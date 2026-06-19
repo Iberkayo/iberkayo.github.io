@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #07090d;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(184, 242, 92, 0.9);
+  color: #07090d;
+}
+
+@layer components {
+  .section-label {
+    @apply font-mono text-[11px] uppercase tracking-[0.2em] text-lime;
+  }
+
+  .section-title {
+    @apply max-w-3xl text-4xl font-medium tracking-[-0.045em] text-white sm:text-6xl;
+  }
+
+  .social-link {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2.5 text-sm text-muted transition-all hover:-translate-y-0.5 hover:border-white/25 hover:text-white;
+  }
+
+  .project-card {
+    transition:
+      transform 350ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 350ms ease,
+      background-color 350ms ease;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(15, 20, 29, 0.92);
+  }
+}
+
+.text-gradient {
+  background: linear-gradient(110deg, #ffffff 5%, #b8f25c 48%, #71d7ff 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.032) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.032) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, black, transparent 90%);
+}
+
+.hero-orb {
+  background:
+    radial-gradient(circle at 40% 40%, rgba(184, 242, 92, 0.2), transparent 42%),
+    radial-gradient(circle at 65% 60%, rgba(113, 215, 255, 0.13), transparent 44%);
+  filter: blur(28px);
+  opacity: 0.75;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
