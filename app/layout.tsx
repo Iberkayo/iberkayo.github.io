@@ -1,42 +1,26 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"]
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"]
-});
+const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
+const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: {
-    default: "Berkay Öz — AI Product Builder",
-    template: "%s — Berkay Öz"
-  },
-  description:
-    "AI Product Builder creating decision-support systems, machine-learning products, RAG applications, and SaaS platforms.",
+  title: { default: "İbrahim Berkay Öz — Data Scientist", template: "%s — İbrahim Berkay Öz" },
+  description: "Data Scientist and AI Product Builder working on machine learning, RAG, decision-support systems, and data products.",
   metadataBase: new URL("https://iberkayo.github.io"),
   openGraph: {
-    title: "Berkay Öz — AI Product Builder",
-    description:
-      "Building AI systems that turn complex information into better decisions.",
+    title: "İbrahim Berkay Öz — Data Scientist",
+    description: "Machine learning, RAG, decision-support systems, and AI products.",
     url: "https://iberkayo.github.io",
-    siteName: "Berkay Öz",
+    siteName: "İbrahim Berkay Öz",
     type: "website"
   }
 };
 
-export default function RootLayout({
-  children
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} bg-ink text-white antialiased`}>

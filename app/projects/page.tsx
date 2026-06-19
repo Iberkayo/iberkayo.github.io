@@ -1,70 +1,46 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
-import { ProjectCard } from "@/components/project-card";
-import { Reveal } from "@/components/reveal";
-import { Button } from "@/components/ui/button";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { projectGroups, projects } from "@/data/projects";
 
 export const metadata: Metadata = {
   title: "Projects",
-  description:
-    "Decision-support platforms, machine-learning systems, RAG applications, copilots, and applied data products built by Berkay Öz."
+  description: "Projects by İbrahim Berkay Öz across machine learning, RAG, decision support, analytics, and AI products."
 };
 
 export default function ProjectsPage() {
   return (
-    <>
-      <section className="relative overflow-hidden px-5 pb-20 pt-36 sm:px-8 sm:pb-28 sm:pt-44">
-        <div className="hero-grid pointer-events-none absolute inset-0 opacity-60" />
-        <div className="relative mx-auto max-w-7xl">
-          <Reveal>
-            <Button asChild variant="ghost" className="-ml-3">
-              <Link href="/">
-                <ArrowLeft size={16} /> Back home
-              </Link>
-            </Button>
-            <p className="section-label mt-14">Project index / {projects.length.toString().padStart(2, "0")}</p>
-            <h1 className="mt-5 max-w-6xl text-[clamp(3.8rem,9vw,8.5rem)] font-medium leading-[0.9] tracking-[-0.065em]">
-              Systems built to
-              <br />
-              <span className="text-gradient">change what happens next.</span>
-            </h1>
-            <p className="mt-9 max-w-2xl text-lg leading-8 text-muted sm:text-xl">
-              A complete view of my work across decision intelligence, machine learning,
-              retrieval systems, analytics, and AI-enabled products.
-            </p>
-          </Reveal>
-        </div>
-      </section>
+    <div className="mx-auto max-w-4xl px-5 pb-24 pt-32 sm:px-8 sm:pt-40">
+      <Link href="/" className="simple-link text-sm"><ArrowLeft size={15} /> Home</Link>
+      <header className="mt-12 border-b border-white/10 pb-10">
+        <h1 className="text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">Projects</h1>
+        <p className="mt-4 max-w-2xl leading-7 text-muted">A collection of decision-support platforms, machine-learning systems, RAG applications, and data product experiments.</p>
+      </header>
 
       {projectGroups.map((group) => {
-        const groupProjects = projects.filter((project) => project.tier === group.key);
+        const items = projects.filter((project) => project.tier === group.key);
         return (
-          <section
-            key={group.key}
-            className="border-t border-white/10 px-5 py-20 sm:px-8 sm:py-28"
-          >
-            <div className="mx-auto max-w-7xl">
-              <Reveal className="grid gap-5 lg:grid-cols-[0.2fr_0.8fr_1fr] lg:items-start">
-                <span className="font-mono text-xs text-lime">{group.index}</span>
-                <h2 className="text-3xl font-medium tracking-[-0.04em] sm:text-4xl">
-                  {group.title}
-                </h2>
-                <p className="max-w-xl leading-7 text-muted">{group.description}</p>
-              </Reveal>
-
-              <div className="mt-12 grid gap-5 md:grid-cols-2">
-                {groupProjects.map((project, index) => (
-                  <Reveal key={project.slug} delay={(index % 2) * 0.06}>
-                    <ProjectCard project={project} index={index} compact />
-                  </Reveal>
-                ))}
-              </div>
+          <section key={group.key} className="content-section">
+            <h2 className="simple-heading">{group.title}</h2>
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-white/45">{group.description}</p>
+            <div className="mt-4 divide-y divide-white/10">
+              {items.map((project) => (
+                <article key={project.slug} className="py-7">
+                  <div className="flex items-start justify-between gap-5">
+                    <div>
+                      <h3 className="text-xl font-medium text-white">{project.title}</h3>
+                      <p className="mt-1 text-sm text-lime/80">{project.eyebrow}</p>
+                    </div>
+                    {project.href && <a href={project.href} target="_blank" rel="noreferrer" aria-label={`Open ${project.title}`} className="text-white/35 hover:text-white"><ArrowUpRight size={18} /></a>}
+                  </div>
+                  <p className="mt-4 leading-7 text-muted">{project.approach}</p>
+                  <p className="mt-3 text-sm text-white/40">{project.technologies.join(" · ")}</p>
+                </article>
+              ))}
             </div>
           </section>
         );
       })}
-    </>
+    </div>
   );
 }

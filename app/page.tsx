@@ -1,134 +1,99 @@
 ﻿import Link from "next/link";
-import { ArrowRight, BrainCircuit, ChartNoAxesCombined, Github, Layers3, Mail, MapPin, MoveUpRight } from "lucide-react";
-import { Reveal } from "@/components/reveal";
-import { Button } from "@/components/ui/button";
+import { ArrowUpRight, Github, Linkedin, Mail, MapPin } from "lucide-react";
 import { featuredProjects } from "@/data/projects";
 
-const disciplines = [
-  [BrainCircuit, "AI engineering", "RAG systems, agents, copilots, memory architectures, and evaluation."],
-  [ChartNoAxesCombined, "Data science", "Risk scoring, recommendation, forecasting, and operational analytics."],
-  [Layers3, "Product building", "Turning models and data pipelines into tools that fit real workflows."]
-] as const;
-
-const journey = [
-  ["Foundation", "Learning to explain what the data means", "Analytics, machine learning, and business-facing dashboards formed the base of my work."],
-  ["Applied systems", "Moving from models to decisions", "Recommendation systems, risk signals, and operational tools shifted my focus toward what users do next."],
-  ["Current direction", "Building AI products end to end", "Today I work across RAG, agents, persistent memory, evaluation, APIs, interfaces, and SaaS products."]
+const interests = [
+  "Decision Support",
+  "Machine Learning",
+  "RAG",
+  "AI Agents",
+  "Recommendation Systems",
+  "Data Products",
+  "LLM Evaluation",
+  "SaaS"
 ];
 
 export default function HomePage() {
   return (
-    <>
-      <section className="relative overflow-hidden px-5 pb-24 pt-36 sm:px-8 sm:pb-32 sm:pt-44">
-        <div className="hero-grid pointer-events-none absolute inset-0 opacity-60" />
-        <div className="hero-orb pointer-events-none absolute left-[66%] top-16 h-[30rem] w-[30rem] rounded-full opacity-50" />
-        <div className="relative mx-auto max-w-7xl">
-          <Reveal>
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
-              <span className="text-lime">Data Scientist & AI Product Builder</span>
-              <span className="hidden h-1 w-1 rounded-full bg-white/30 sm:block" />
-              <span className="inline-flex items-center gap-1.5"><MapPin size={12} /> Turkey</span>
+    <div className="mx-auto max-w-4xl px-5 pb-24 pt-32 sm:px-8 sm:pt-40">
+      <section className="border-b border-white/10 pb-16">
+        <div className="flex flex-col gap-8 sm:flex-row sm:items-center">
+          <div className="grid h-24 w-24 shrink-0 place-items-center rounded-full border border-white/15 bg-white/[0.03] text-2xl font-medium text-white">
+            BÖ
+          </div>
+          <div>
+            <h1 className="text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">İbrahim Berkay Öz</h1>
+            <p className="mt-3 text-lg text-muted">Data Scientist · AI Product Builder</p>
+            <p className="mt-2 inline-flex items-center gap-1.5 text-sm text-white/45"><MapPin size={14} /> Turkey</p>
+            <div className="mt-6 flex flex-wrap gap-5 text-sm">
+              <a className="simple-link" href="https://github.com/Iberkayo" target="_blank" rel="noreferrer"><Github size={16} /> GitHub</a>
+              <a className="simple-link" href="https://linkedin.com/in/ibrahim-berkay-oz" target="_blank" rel="noreferrer"><Linkedin size={16} /> LinkedIn</a>
+              <a className="simple-link" href="mailto:ibrahimberkayoz@gmail.com"><Mail size={16} /> Email</a>
             </div>
-          </Reveal>
-          <div className="mt-14 grid gap-12 lg:grid-cols-[1.35fr_0.65fr] lg:items-end">
-            <Reveal delay={0.06}>
-              <p className="mb-5 text-lg text-muted sm:text-xl">Hello, I&apos;m</p>
-              <h1 className="text-[clamp(4.8rem,12vw,11rem)] font-medium leading-[0.78] tracking-[-0.085em] text-white">
-                Berkay<br /><span className="text-gradient">Öz.</span>
-              </h1>
-            </Reveal>
-            <Reveal delay={0.13} className="border-l border-white/10 pl-6 sm:pl-8">
-              <p className="text-xl leading-9 text-white/85">I build AI systems that help people understand information and make better decisions.</p>
-              <p className="mt-5 leading-7 text-muted">My work sits between data science, AI engineering, and product development—from machine-learning models to RAG applications and decision-support platforms.</p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Button asChild variant="outline"><a href="https://github.com/Iberkayo" target="_blank" rel="noreferrer"><Github size={16} /> GitHub</a></Button>
-                <Button asChild variant="ghost"><a href="mailto:berkayvesto24@gmail.com"><Mail size={16} /> Email</a></Button>
-              </div>
-            </Reveal>
           </div>
         </div>
       </section>
 
-      <section id="about" className="scroll-mt-28 border-y border-white/10 bg-white/[0.018] px-5 py-20 sm:px-8 sm:py-28">
-        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.45fr_1fr]">
-          <Reveal><p className="section-label">About</p></Reveal>
-          <Reveal delay={0.05}>
-            <p className="max-w-4xl text-3xl font-medium leading-[1.35] tracking-[-0.035em] text-white sm:text-5xl">I&apos;m interested in the space between a promising model and a product that is actually useful.</p>
-            <div className="mt-10 grid gap-6 text-base leading-8 text-muted md:grid-cols-2">
-              <p>That means understanding the business problem, structuring the data, designing the intelligence layer, and building the interface around it.</p>
-              <p>I care about grounded outputs, measurable quality, human oversight, and systems that improve how a real decision gets made.</p>
-            </div>
-          </Reveal>
+      <section id="about" className="content-section">
+        <h2 className="simple-heading">Biography</h2>
+        <div className="mt-5 space-y-4 text-[17px] leading-8 text-muted">
+          <p>
+            I am a Data Scientist focused on building practical AI systems. My work spans
+            machine learning, retrieval-augmented generation, AI agents, analytics, and
+            product development.
+          </p>
+          <p>
+            I enjoy taking a problem from raw data and an unclear business need to a
+            working system with an API, interface, evaluation process, and a clear role in
+            the user&apos;s workflow.
+          </p>
         </div>
       </section>
 
-      <section id="work" className="scroll-mt-24 px-5 py-24 sm:px-8 sm:py-32">
-        <div className="mx-auto max-w-7xl">
-          <Reveal className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-            <div><p className="section-label">Selected projects</p><h2 className="section-title mt-4">A few things I&apos;ve built.</h2></div>
-            <Button asChild variant="ghost"><Link href="/projects/">Full project archive <ArrowRight size={16} /></Link></Button>
-          </Reveal>
-          <div className="mt-14 border-t border-white/10">
-            {featuredProjects.map((project, index) => (
-              <Reveal key={project.slug} delay={(index % 3) * 0.04}>
-                <article className="group grid gap-5 border-b border-white/10 py-9 transition-colors hover:bg-white/[0.015] sm:grid-cols-[4rem_0.8fr_1.25fr_auto] sm:items-start sm:px-3">
-                  <span className="font-mono text-xs text-white/30">{String(index + 1).padStart(2, "0")}</span>
-                  <div>
-                    <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-lime">{project.eyebrow}</p>
-                    <h3 className="mt-2 text-2xl font-medium tracking-[-0.03em] text-white">{project.title}</h3>
-                    {project.status && <p className="mt-2 text-xs text-white/35">{project.status}</p>}
-                  </div>
-                  <div>
-                    <p className="leading-7 text-muted">{project.approach}</p>
-                    <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 font-mono text-[10px] uppercase tracking-wide text-white/35">
-                      {project.technologies.slice(0, 4).map((technology) => <span key={technology}>{technology}</span>)}
-                    </div>
-                  </div>
-                  {project.href ? <a href={project.href} target="_blank" rel="noreferrer" aria-label={`Open ${project.title}`} className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-muted transition-all hover:border-white/30 hover:text-white"><MoveUpRight size={17} /></a> : <span className="hidden h-10 w-10 sm:block" />}
-                </article>
-              </Reveal>
-            ))}
-          </div>
+      <section className="content-section">
+        <h2 className="simple-heading">Interests</h2>
+        <div className="mt-5 flex flex-wrap gap-2">
+          {interests.map((interest) => <span className="simple-tag" key={interest}>{interest}</span>)}
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-white/[0.018] px-5 py-24 sm:px-8 sm:py-28">
-        <div className="mx-auto max-w-7xl">
-          <Reveal><p className="section-label">What I work across</p></Reveal>
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {disciplines.map(([Icon, title, copy], index) => (
-              <Reveal key={title} delay={index * 0.06}>
-                <div className="h-full border-t border-white/15 py-7"><Icon size={22} strokeWidth={1.4} className="text-lime" /><h3 className="mt-10 text-2xl font-medium tracking-tight">{title}</h3><p className="mt-3 max-w-sm leading-7 text-muted">{copy}</p></div>
-              </Reveal>
-            ))}
-          </div>
+      <section id="work" className="content-section">
+        <div className="flex items-end justify-between gap-5">
+          <h2 className="simple-heading">Selected Projects</h2>
+          <Link className="text-sm text-muted hover:text-white" href="/projects/">View all</Link>
         </div>
-      </section>
-
-      <section id="journey" className="scroll-mt-24 px-5 py-24 sm:px-8 sm:py-32">
-        <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[0.5fr_1fr]">
-          <Reveal><p className="section-label">Journey</p><h2 className="mt-4 text-4xl font-medium tracking-[-0.045em] sm:text-5xl">How the work evolved.</h2></Reveal>
-          <div className="border-t border-white/10">
-            {journey.map(([period, title, copy], index) => (
-              <Reveal key={period} delay={index * 0.05}>
-                <div className="grid gap-4 border-b border-white/10 py-8 sm:grid-cols-[8rem_1fr]">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-lime">{period}</span>
-                  <div><h3 className="text-xl font-medium text-white">{title}</h3><p className="mt-3 max-w-2xl leading-7 text-muted">{copy}</p></div>
+        <div className="mt-3 divide-y divide-white/10">
+          {featuredProjects.map((project) => (
+            <article key={project.slug} className="py-7">
+              <div className="flex items-start justify-between gap-5">
+                <div>
+                  <h3 className="text-xl font-medium text-white">{project.title}</h3>
+                  <p className="mt-1 text-sm text-lime/80">{project.eyebrow}</p>
                 </div>
-              </Reveal>
-            ))}
-          </div>
+                {project.href && <a href={project.href} target="_blank" rel="noreferrer" aria-label={`Open ${project.title}`} className="text-white/35 hover:text-white"><ArrowUpRight size={18} /></a>}
+              </div>
+              <p className="mt-4 leading-7 text-muted">{project.approach}</p>
+              <p className="mt-3 text-sm text-white/40">{project.technologies.slice(0, 5).join(" · ")}</p>
+            </article>
+          ))}
         </div>
       </section>
 
-      <section className="px-5 pb-24 sm:px-8 sm:pb-32">
-        <Reveal>
-          <div className="mx-auto flex max-w-7xl flex-col gap-6 border-t border-white/10 pt-10 sm:flex-row sm:items-center sm:justify-between">
-            <div><p className="section-label">Contact</p><p className="mt-3 text-2xl font-medium tracking-tight">Always open to exchanging ideas about AI products and data.</p></div>
-            <a href="mailto:berkayvesto24@gmail.com" className="text-lg text-white underline decoration-white/20 underline-offset-8 transition-colors hover:decoration-lime">berkayvesto24@gmail.com</a>
-          </div>
-        </Reveal>
+      <section className="content-section">
+        <h2 className="simple-heading">How I Work</h2>
+        <ul className="mt-5 space-y-3 text-[17px] leading-7 text-muted">
+          <li>Start with the decision or workflow that needs to improve.</li>
+          <li>Build the smallest useful system around reliable data and measurable outputs.</li>
+          <li>Keep humans in control when context, risk, or judgment matters.</li>
+          <li>Evaluate the complete product, not only the model.</li>
+        </ul>
       </section>
-    </>
+
+      <section id="contact" className="content-section border-b-0">
+        <h2 className="simple-heading">Contact</h2>
+        <p className="mt-5 leading-7 text-muted">Feel free to reach out about AI products, data science, or an interesting problem.</p>
+        <a className="mt-4 inline-block text-white underline decoration-white/25 underline-offset-4 hover:decoration-lime" href="mailto:ibrahimberkayoz@gmail.com">ibrahimberkayoz@gmail.com</a>
+      </section>
+    </div>
   );
 }
