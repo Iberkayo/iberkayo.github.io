@@ -6,10 +6,10 @@ export function SiteFooter() {
       <div className="mx-auto flex max-w-7xl flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-lime">
-            Build the decision, not just the model.
+            Berkay Öz · Data Scientist
           </p>
           <p className="mt-3 max-w-xl text-2xl font-medium tracking-tight text-white">
-            AI products for real operational choices.
+            Exploring how AI systems become useful products.
           </p>
         </div>
         <div className="flex flex-wrap gap-3">
