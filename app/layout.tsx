@@ -8,14 +8,14 @@ const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: { default: "İbrahim Berkay Öz — Data Scientist", template: "%s — İbrahim Berkay Öz" },
-  description: "Data Scientist and AI Product Builder working on machine learning, RAG, decision-support systems, and data products.",
+  title: { default: "Ibrahim Berkay Öz — Data Scientist", template: "%s — Ibrahim Berkay Öz" },
+  description: "Data Scientist and AI Product Builder creating machine-learning systems, decision-support platforms, retrieval applications, and AI products.",
   metadataBase: new URL("https://iberkayo.github.io"),
   openGraph: {
-    title: "İbrahim Berkay Öz — Data Scientist",
-    description: "Machine learning, RAG, decision-support systems, and AI products.",
+    title: "Ibrahim Berkay Öz — Data Scientist",
+    description: "Turning complex data into better decisions.",
     url: "https://iberkayo.github.io",
-    siteName: "İbrahim Berkay Öz",
+    siteName: "Ibrahim Berkay Öz",
     type: "website"
   }
 };
@@ -23,10 +23,8 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} bg-ink text-white antialiased`}>
-        <SiteHeader />
-        <main>{children}</main>
-        <SiteFooter />
+      <body className={`${geistSans.variable} ${geistMono.variable} bg-paper text-ink antialiased`}>
+        <SiteHeader /><main>{children}</main><SiteFooter />
       </body>
     </html>
   );

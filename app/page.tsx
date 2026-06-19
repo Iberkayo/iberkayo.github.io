@@ -1,99 +1,159 @@
-﻿import Link from "next/link";
-import { ArrowUpRight, Github, Linkedin, Mail, MapPin } from "lucide-react";
-import { featuredProjects } from "@/data/projects";
+import Link from "next/link";
+import {
+  ArrowRight,
+  BarChart3,
+  Box,
+  BrainCircuit,
+  Database,
+  Github,
+  Layers3,
+  Linkedin,
+  Mail,
+  MapPin,
+  Search,
+  Target,
+  TrendingUp
+} from "lucide-react";
+import { projects } from "@/data/projects";
 
-const interests = [
-  "Decision Support",
-  "Machine Learning",
-  "RAG",
-  "AI Agents",
-  "Recommendation Systems",
-  "Data Products",
-  "LLM Evaluation",
-  "SaaS"
+const flagshipSlugs = [
+  "edutarget",
+  "decisioncore-ai",
+  "spare-parts-recommendation",
+  "customer-service-copilot"
 ];
+
+const flagshipProjects = flagshipSlugs.map((slug) => projects.find((project) => project.slug === slug)!);
+
+const metrics = [
+  ["10+", "AI & Data Projects", BarChart3],
+  [null, "End-to-End Product Builder", Layers3],
+  [null, "Decision Support Systems", Target],
+  [null, "Production Deployments", Box]
+] as const;
+
+const process = [
+  ["01", "Understand the Problem", "I study the domain, users, constraints, and the decision that needs to improve.", Search],
+  ["02", "Model the Decision", "I connect data, assumptions, uncertainty, and evaluation criteria to the decision.", Database],
+  ["03", "Build the System", "I create the pipeline, intelligence layer, API, and interface as one working product.", Box],
+  ["04", "Measure Outcomes", "I evaluate reliability and whether the system creates a useful change in practice.", TrendingUp]
+] as const;
+
+const stack = ["Python", "SQL", "FastAPI", "PostgreSQL", "React", "Pandas", "scikit-learn", "XGBoost", "LightGBM", "LangGraph", "Qdrant", "OpenAI", "Docker"];
 
 export default function HomePage() {
   return (
-    <div className="mx-auto max-w-4xl px-5 pb-24 pt-32 sm:px-8 sm:pt-40">
-      <section className="border-b border-white/10 pb-16">
-        <div className="flex flex-col gap-8 sm:flex-row sm:items-center">
-          <div className="grid h-24 w-24 shrink-0 place-items-center rounded-full border border-white/15 bg-white/[0.03] text-2xl font-medium text-white">
-            BÖ
-          </div>
+    <>
+      <section id="home" className="section-shell pb-16 pt-32 sm:pb-20 sm:pt-40">
+        <div className="editorial-grid items-center">
           <div>
-            <h1 className="text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">İbrahim Berkay Öz</h1>
-            <p className="mt-3 text-lg text-muted">Data Scientist · AI Product Builder</p>
-            <p className="mt-2 inline-flex items-center gap-1.5 text-sm text-white/45"><MapPin size={14} /> Turkey</p>
-            <div className="mt-6 flex flex-wrap gap-5 text-sm">
-              <a className="simple-link" href="https://github.com/Iberkayo" target="_blank" rel="noreferrer"><Github size={16} /> GitHub</a>
-              <a className="simple-link" href="https://linkedin.com/in/ibrahim-berkay-oz" target="_blank" rel="noreferrer"><Linkedin size={16} /> LinkedIn</a>
-              <a className="simple-link" href="mailto:ibrahimberkayoz@gmail.com"><Mail size={16} /> Email</a>
+            <p className="eyebrow">Data Scientist · AI Product Builder</p>
+            <h1 className="mt-6 max-w-3xl font-serif text-[clamp(3.3rem,7vw,6.7rem)] font-medium leading-[0.96] tracking-[-0.055em] text-ink">
+              Turning complex data into <span className="text-accent">better decisions.</span>
+            </h1>
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-muted sm:text-xl">
+              I build machine learning systems, retrieval applications, recommendation engines and decision-support products that help people make better decisions.
+            </p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <a className="button-primary" href="#projects">View Projects <ArrowRight size={16} /></a>
+              <a className="button-secondary" href="#approach">My Approach</a>
             </div>
           </div>
-        </div>
-      </section>
 
-      <section id="about" className="content-section">
-        <h2 className="simple-heading">Biography</h2>
-        <div className="mt-5 space-y-4 text-[17px] leading-8 text-muted">
-          <p>
-            I am a Data Scientist focused on building practical AI systems. My work spans
-            machine learning, retrieval-augmented generation, AI agents, analytics, and
-            product development.
-          </p>
-          <p>
-            I enjoy taking a problem from raw data and an unclear business need to a
-            working system with an API, interface, evaluation process, and a clear role in
-            the user&apos;s workflow.
-          </p>
+          <DecisionMap />
         </div>
-      </section>
 
-      <section className="content-section">
-        <h2 className="simple-heading">Interests</h2>
-        <div className="mt-5 flex flex-wrap gap-2">
-          {interests.map((interest) => <span className="simple-tag" key={interest}>{interest}</span>)}
-        </div>
-      </section>
-
-      <section id="work" className="content-section">
-        <div className="flex items-end justify-between gap-5">
-          <h2 className="simple-heading">Selected Projects</h2>
-          <Link className="text-sm text-muted hover:text-white" href="/projects/">View all</Link>
-        </div>
-        <div className="mt-3 divide-y divide-white/10">
-          {featuredProjects.map((project) => (
-            <article key={project.slug} className="py-7">
-              <div className="flex items-start justify-between gap-5">
-                <div>
-                  <h3 className="text-xl font-medium text-white">{project.title}</h3>
-                  <p className="mt-1 text-sm text-lime/80">{project.eyebrow}</p>
-                </div>
-                {project.href && <a href={project.href} target="_blank" rel="noreferrer" aria-label={`Open ${project.title}`} className="text-white/35 hover:text-white"><ArrowUpRight size={18} /></a>}
-              </div>
-              <p className="mt-4 leading-7 text-muted">{project.approach}</p>
-              <p className="mt-3 text-sm text-white/40">{project.technologies.slice(0, 5).join(" · ")}</p>
-            </article>
+        <div className="mt-16 grid border-y border-rule sm:grid-cols-2 lg:grid-cols-4">
+          {metrics.map(([value, label, Icon], index) => (
+            <div key={label} className={`flex items-center gap-4 py-5 ${index > 0 ? "sm:border-l sm:border-rule sm:pl-6" : ""}`}>
+              <span className="grid h-10 w-10 place-items-center rounded-lg border border-rule bg-white text-accent"><Icon size={18} strokeWidth={1.6} /></span>
+              <div>{value && <p className="font-mono text-xs font-semibold text-accent">{value}</p>}<p className={`${value ? "mt-1" : ""} text-sm font-medium text-ink`}>{label}</p></div>
+            </div>
           ))}
         </div>
       </section>
 
-      <section className="content-section">
-        <h2 className="simple-heading">How I Work</h2>
-        <ul className="mt-5 space-y-3 text-[17px] leading-7 text-muted">
-          <li>Start with the decision or workflow that needs to improve.</li>
-          <li>Build the smallest useful system around reliable data and measurable outputs.</li>
-          <li>Keep humans in control when context, risk, or judgment matters.</li>
-          <li>Evaluate the complete product, not only the model.</li>
-        </ul>
+      <section id="projects" className="border-y border-rule bg-white">
+        <div className="section-shell py-20 sm:py-24">
+          <div className="section-heading-row">
+            <div><p className="eyebrow">Selected work</p><h2 className="section-title">Projects with real impact</h2></div>
+            <Link className="text-link" href="/projects/">View all projects <ArrowRight size={15} /></Link>
+          </div>
+
+          <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {flagshipProjects.map((project, index) => (
+              <article key={project.slug} className="case-card">
+                <div className="flex items-center justify-between">
+                  <span className="case-icon">{index === 0 ? <Target /> : index === 1 ? <BrainCircuit /> : index === 2 ? <Box /> : <BarChart3 />}</span>
+                  <span className="font-mono text-[10px] text-faint">0{index + 1}</span>
+                </div>
+                <h3 className="mt-6 font-serif text-2xl font-semibold leading-tight text-ink">{project.title}</h3>
+                <p className="mt-2 text-xs font-semibold uppercase tracking-[0.1em] text-accent">{project.eyebrow}</p>
+
+                <dl className="mt-7 space-y-5 text-sm leading-6">
+                  <div><dt className="case-label">Problem</dt><dd className="mt-1 text-muted">{project.problem}</dd></div>
+                  <div><dt className="case-label">Approach</dt><dd className="mt-1 text-muted">{project.approach}</dd></div>
+                  <div><dt className="case-label">Outcome</dt><dd className="mt-1 text-muted">{project.impact}</dd></div>
+                </dl>
+
+                <p className="mt-auto border-t border-rule pt-5 text-xs text-faint">{project.technologies.slice(0, 4).join(" · ")}</p>
+                <Link className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-accent hover:underline" href={`/projects/#${project.slug}`}>Read Case Study <ArrowRight size={14} /></Link>
+              </article>
+            ))}
+          </div>
+        </div>
       </section>
 
-      <section id="contact" className="content-section border-b-0">
-        <h2 className="simple-heading">Contact</h2>
-        <p className="mt-5 leading-7 text-muted">Feel free to reach out about AI products, data science, or an interesting problem.</p>
-        <a className="mt-4 inline-block text-white underline decoration-white/25 underline-offset-4 hover:decoration-lime" href="mailto:ibrahimberkayoz@gmail.com">ibrahimberkayoz@gmail.com</a>
+      <section id="approach" className="section-shell py-20 sm:py-24">
+        <p className="eyebrow">How I work</p>
+        <h2 className="section-title">From problem to measurable outcome</h2>
+        <div className="mt-12 grid gap-10 lg:grid-cols-4 lg:gap-0">
+          {process.map(([number, title, copy, Icon], index) => (
+            <div key={title} className="process-step">
+              <div className="flex items-center justify-between"><span className="font-mono text-xs font-semibold text-accent">{number}</span>{index < process.length - 1 && <ArrowRight className="hidden text-faint lg:block" size={22} strokeWidth={1.2} />}</div>
+              <span className="mt-5 grid h-11 w-11 place-items-center rounded-lg border border-blue-100 bg-blue-50 text-accent"><Icon size={19} strokeWidth={1.6} /></span>
+              <h3 className="mt-6 font-serif text-xl font-semibold text-ink">{title}</h3>
+              <p className="mt-3 text-sm leading-6 text-muted">{copy}</p>
+            </div>
+          ))}
+        </div>
       </section>
+
+      <section id="about" className="border-t border-rule bg-[#F6F5F1]">
+        <div className="section-shell grid gap-12 py-16 md:grid-cols-[1fr_1.25fr_0.8fr] md:divide-x md:divide-rule">
+          <div className="md:pr-10">
+            <p className="eyebrow">About</p>
+            <p className="mt-5 leading-7 text-muted">I&apos;m a Data Scientist who builds practical AI products across machine learning, RAG systems, analytics, and decision support. I care about clear problem framing, reliable evaluation, and systems that people can actually use.</p>
+            <div className="mt-6 flex items-center gap-2 text-sm text-ink"><MapPin size={15} className="text-accent" /> Izmir, Turkey</div>
+          </div>
+          <div className="md:px-10">
+            <p className="eyebrow">Tools & technologies</p>
+            <div className="mt-5 flex flex-wrap gap-2">{stack.map((item) => <span className="stack-chip" key={item}>{item}</span>)}</div>
+          </div>
+          <div id="contact" className="md:pl-10">
+            <p className="eyebrow">Connect</p>
+            <p className="mt-5 text-sm leading-6 text-muted">Open to thoughtful conversations about AI products, data, and decision-support systems.</p>
+            <div className="mt-6 space-y-3 text-sm">
+              <a className="contact-link" href="https://github.com/Iberkayo" target="_blank" rel="noreferrer"><Github size={16} /> GitHub</a>
+              <a className="contact-link" href="https://linkedin.com/in/ibrahim-berkay-oz" target="_blank" rel="noreferrer"><Linkedin size={16} /> LinkedIn</a>
+              <a className="contact-link" href="mailto:ibrahimberkayoz@gmail.com"><Mail size={16} /> Email</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+function DecisionMap() {
+  return (
+    <div className="decision-map" aria-label="Core expertise centered on better decisions">
+      <div className="map-node map-top"><strong>Machine Learning</strong><span>Forecasting · Classification<br />Recommendation</span></div>
+      <div className="map-node map-left"><strong>Data</strong><span>Operational Data<br />Documents · Analytics</span></div>
+      <div className="map-center"><span>Better</span><strong>Decisions</strong></div>
+      <div className="map-node map-right"><strong>AI Systems</strong><span>RAG · Agents<br />LLM Applications</span></div>
+      <div className="map-node map-bottom"><strong>Products</strong><span>Dashboards · Decision Support<br />SaaS Platforms</span></div>
+      <span className="map-line line-top" /><span className="map-line line-left" /><span className="map-line line-right" /><span className="map-line line-bottom" />
     </div>
   );
 }

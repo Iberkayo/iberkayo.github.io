@@ -5,36 +5,43 @@ import { projectGroups, projects } from "@/data/projects";
 
 export const metadata: Metadata = {
   title: "Projects",
-  description: "Projects by İbrahim Berkay Öz across machine learning, RAG, decision support, analytics, and AI products."
+  description: "Case studies and projects by Ibrahim Berkay Öz across machine learning, RAG, decision support, analytics, and AI products."
 };
 
 export default function ProjectsPage() {
   return (
-    <div className="mx-auto max-w-4xl px-5 pb-24 pt-32 sm:px-8 sm:pt-40">
-      <Link href="/" className="simple-link text-sm"><ArrowLeft size={15} /> Home</Link>
-      <header className="mt-12 border-b border-white/10 pb-10">
-        <h1 className="text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">Projects</h1>
-        <p className="mt-4 max-w-2xl leading-7 text-muted">A collection of decision-support platforms, machine-learning systems, RAG applications, and data product experiments.</p>
+    <div className="section-shell pb-24 pt-28 sm:pt-36">
+      <Link href="/" className="text-link"><ArrowLeft size={15} /> Back home</Link>
+      <header className="mt-12 max-w-3xl border-b border-rule pb-12">
+        <p className="eyebrow">Project archive</p>
+        <h1 className="mt-4 font-serif text-5xl font-semibold tracking-[-0.045em] text-ink sm:text-6xl">Selected systems and experiments</h1>
+        <p className="mt-6 text-lg leading-8 text-muted">Projects are grouped by their role in my work: flagship decision products, supporting AI systems, and focused data experiments.</p>
       </header>
 
       {projectGroups.map((group) => {
         const items = projects.filter((project) => project.tier === group.key);
         return (
-          <section key={group.key} className="content-section">
-            <h2 className="simple-heading">{group.title}</h2>
-            <p className="mt-3 max-w-2xl text-sm leading-6 text-white/45">{group.description}</p>
-            <div className="mt-4 divide-y divide-white/10">
+          <section key={group.key} className="archive-section">
+            <div className="grid gap-4 md:grid-cols-[0.35fr_1fr]">
+              <div><p className="eyebrow">{group.index}</p><h2 className="mt-3 font-serif text-3xl font-semibold text-ink">{group.title}</h2></div>
+              <p className="max-w-2xl leading-7 text-muted">{group.description}</p>
+            </div>
+            <div className="mt-8">
               {items.map((project) => (
-                <article key={project.slug} className="py-7">
-                  <div className="flex items-start justify-between gap-5">
-                    <div>
-                      <h3 className="text-xl font-medium text-white">{project.title}</h3>
-                      <p className="mt-1 text-sm text-lime/80">{project.eyebrow}</p>
+                <article id={project.slug} key={project.slug} className="archive-card scroll-mt-24">
+                  <div>
+                    <div className="flex items-start justify-between gap-4">
+                      <div><h3 className="font-serif text-2xl font-semibold text-ink">{project.title}</h3><p className="mt-2 text-xs font-semibold uppercase tracking-[0.1em] text-accent">{project.eyebrow}</p></div>
+                      {project.href && <a href={project.href} target="_blank" rel="noreferrer" aria-label={`Open ${project.title}`} className="text-faint hover:text-accent"><ArrowUpRight size={18} /></a>}
                     </div>
-                    {project.href && <a href={project.href} target="_blank" rel="noreferrer" aria-label={`Open ${project.title}`} className="text-white/35 hover:text-white"><ArrowUpRight size={18} /></a>}
+                    {project.status && <p className="mt-5 font-mono text-[10px] uppercase tracking-[0.12em] text-faint">{project.status}</p>}
+                    <p className="mt-5 text-xs text-faint">{project.technologies.join(" · ")}</p>
                   </div>
-                  <p className="mt-4 leading-7 text-muted">{project.approach}</p>
-                  <p className="mt-3 text-sm text-white/40">{project.technologies.join(" · ")}</p>
+                  <dl className="grid gap-5 text-sm leading-6 sm:grid-cols-3">
+                    <div><dt className="case-label">Problem</dt><dd className="mt-2 text-muted">{project.problem}</dd></div>
+                    <div><dt className="case-label">Approach</dt><dd className="mt-2 text-muted">{project.approach}</dd></div>
+                    <div><dt className="case-label">Outcome</dt><dd className="mt-2 text-muted">{project.impact}</dd></div>
+                  </dl>
                 </article>
               ))}
             </div>
